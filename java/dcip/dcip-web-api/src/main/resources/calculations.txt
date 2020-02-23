@@ -1,0 +1,427 @@
+[{
+		"fieldName": "EPS GAAP",
+		"dependencys": [{
+				"dependencyName": "Net Income",
+				"calculationOrder": 1,
+				"relativeYear": 0
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 2,
+				"relativeYear": 0
+			}
+		],
+		"formula": "dependency1/dependency2"
+	},
+	{
+		"fieldName": "Free Cash Flow / Share",
+		"dependencys": [{
+				"dependencyName": "Cash from Operations",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Capital Expenditure",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1+dependency2)/dependency3"
+	},
+	{
+		"fieldName": "Payout Ratio",
+		"dependencys": [{
+				"dependencyName": "Dividend / Share",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Net Income",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "dependency1/(dependency2/dependency3)"
+	},
+	{
+		"fieldName": "Gross Margin",
+		"dependencys": [{
+				"dependencyName": "Gross Profit",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Total Revenues",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "EBIT Margin",
+		"dependencys": [{
+				"dependencyName": "EBIT",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Total Revenues",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+
+
+
+
+	{
+		"fieldName": "Total Revenues / Share Growth",
+		"dependencys": [{
+				"dependencyName": "Total Revenues",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Total Revenues",
+				"calculationOrder": 3,
+				"relativeYear": -1
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 4,
+				"relativeYear": -1
+
+			}
+		],
+		"formula": "((((dependency1/dependency2) / (dependency3/dependency4))-1))"
+	},
+	{
+		"fieldName": "EBIT / Share Growth",
+		"dependencys": [{
+				"dependencyName": "EBIT",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "EBIT",
+				"calculationOrder": 3,
+				"relativeYear": -1
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 4,
+				"relativeYear": -1
+
+			}
+		],
+		"formula": "(((dependency1/dependency2)/(dependency3/dependency4))-1)"
+	},
+	{
+		"fieldName": "Earnings / Share Growth",
+		"dependencys": [{
+				"dependencyName": "Net Income",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Net Income",
+				"calculationOrder": 3,
+				"relativeYear": -1
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 4,
+				"relativeYear": -1
+
+			}
+		],
+		"formula": "(((dependency1/dependency2)/(dependency3/dependency4))-1)"
+	},
+	{
+		"fieldName": "Dividend / Share Growth",
+		"dependencys": [{
+				"dependencyName": "Dividend / Share",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Dividend / Share",
+				"calculationOrder": 2,
+				"relativeYear": -1
+
+			}
+
+		],
+		"formula": "((dependency1/dependency2)-1)"
+	},
+
+
+
+
+	{
+		"fieldName": "Free Cash Flow",
+		"dependencys": [{
+				"dependencyName": "Cash from Operations",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Capital Expenditure",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1+dependency2)"
+	},
+	{
+		"fieldName": "FCF / Net Income",
+		"dependencys": [{
+				"dependencyName": "Cash from Operations",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Capital Expenditure",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Net Income",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1+dependency2)/dependency3"
+	},
+	{
+		"fieldName": "Net Debt / EBITDA",
+		"dependencys": [{
+				"dependencyName": "Net Debt",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "EBITDA",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "Net Debt / Total Equity",
+		"dependencys": [{
+				"dependencyName": "Net Debt",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Shareholder Equity",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "P / EPS",
+		"dependencys": [{
+				"dependencyName": "FY End Price",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Net Income",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/(dependency2/dependency3))"
+	},
+	{
+		"fieldName": "P / B",
+		"dependencys": [{
+				"dependencyName": "FY End Price",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Shareholder Equity",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/(dependency2/dependency3))"
+	},
+	{
+		"fieldName": "EV / Total Revenues",
+		"dependencys": [{
+				"dependencyName": "FY End EV",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Total Revenues",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "EV / EBITDA",
+		"dependencys": [{
+				"dependencyName": "FY End EV",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "EBITDA",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "Dividend Yield",
+		"dependencys": [{
+				"dependencyName": "Dividend / Share",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "FY End Price",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	},
+	{
+		"fieldName": "FCF Yield",
+		"dependencys": [{
+				"dependencyName": "Cash from Operations",
+				"calculationOrder": 1,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Capital Expenditure",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "Diluted Shares Outstanding",
+				"calculationOrder": 3,
+				"relativeYear": 0
+
+			},
+			{
+				"dependencyName": "FY End Price",
+				"calculationOrder": 4,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "((dependency1+dependency2)/dependency3)/dependency4"
+	},
+	{
+		"fieldName": "Return on Equity",
+		"dependencys": [{
+				"dependencyName": "Net Income",
+				"calculationOrder": 1,
+				"relativeYear": 0
+			},
+			{
+				"dependencyName": "Shareholder Equity",
+				"calculationOrder": 2,
+				"relativeYear": 0
+
+			}
+		],
+		"formula": "(dependency1/dependency2)"
+	}
+
+]

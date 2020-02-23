@@ -1,0 +1,117 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: dcip-java-build-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+  - name: CG_APP_NAME
+    description: "CG Application Name"
+    value: ${CG_APP_NAME}
+  - name: BUILD_HOSTING_PROJECT
+    description: "Build Hosting Project"
+    value: ${BUILD_HOSTING_PROJECT}
+  - name: CG_APP_COMPONENT_NAME
+    description: "CG Application Component Name"
+    value: ${CG_APP_COMPONENT_NAME}
+  - name: GIT_REPOSITORY
+    description: "Git Repository"
+    value: ${GIT_REPOSITORY}
+  - name: DOCKER_REGISTRY
+    description: "Docker Registry"
+    value: ${DOCKER_REGISTRY}
+  - name: DOCKER_TAG
+    description: "Docker Registry"
+    value: "latest"
+  - name: APP_DIR
+    description: "Application Directory"
+    value: "./java"
+  - name: BUILDER_IMAGE
+    description: "Builder Image"
+    value: "cgprdregistry.capgroup.com/cgbuild/deveng/cgjdk11:latest"
+  - name: BUILD_TAG
+    description: "Docker Image Tag"
+    value: ${BUILD_TAG}
+
+objects:
+  #--------------------------------------------------------------------------------
+  # Build Config
+  #--------------------------------------------------------------------------------
+  - apiVersion: v1
+    kind: BuildConfig
+    metadata:
+      annotations:
+        openshift.io/generated-by: CGCustom
+      creationTimestamp: null
+      labels:
+        build: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+      name: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+    spec:
+      failedBuildsHistoryLimit: 5
+      nodeSelector: null
+      output:
+        to:
+          kind: DockerImage
+          name: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}/${CG_APP_COMPONENT_NAME}:${BUILD_TAG}
+      postCommit: 
+      command: ["/bin/bash", "-c", "echo $ARCHIVE_ID $ARCHIVE_FOLDER;
+                  curl https://cgrepo.capgroup.com/repository/cgfiles/deveng/ocpsupport/cg-stash/latest/cg-stash-latest.sh --output cg-stash.sh;
+                  pwd;
+                  chmod u+x cg-stash.sh;
+                  ./cg-stash.sh s $ARCHIVE_ID $ARCHIVE_FOLDER
+                  "]     
+      resources: {}
+      runPolicy: Parallel
+      source:
+        contextDir: ${APP_DIR}
+        git:
+          uri: ${GIT_REPOSITORY}
+        sourceSecret:
+          name: bitbucket-read
+        type: Git
+      strategy:
+        dockerStrategy:
+          env:
+          from:
+            kind: DockerImage
+            name: ${BUILDER_IMAGE}
+        type: Docker
+        successfulBuildsHistoryLimit: 5
+      triggers: []
+    status:
+      lastVersion: 0
+
+  #--------------------------------------------------------------------------------
+  # Image Stream
+  #--------------------------------------------------------------------------------
+  - apiVersion: v1
+    kind: ImageStream
+    metadata:
+      annotations:
+        openshift.io/generated-by: CGCustom
+      creationTimestamp: null
+      generation: 1
+      labels:
+        build: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+      name: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+    spec:
+      lookupPolicy:
+        local: false
+      tags:
+        - annotations: null
+          from:
+            kind: DockerImage
+            name: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}/${CG_APP_COMPONENT_NAME}:latest
+          generation: null
+          importPolicy: {}
+          name: latest
+          referencePolicy:
+            type: ""
+    status:
+      dockerImageRepository: ""

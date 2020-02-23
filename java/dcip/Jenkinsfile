@@ -1,0 +1,37 @@
+def GIT_SHARED_LIB_REPOSITORY='https://bitbucket.capgroup.com/scm/cicd/jenkinslib.git'
+def GIT_SHARED_LIB_BRANCH='feature/DE-3454-ocp-4-upgrade-design-a-jenkins-pipeline-testbed'
+
+library identifier: "common@${GIT_SHARED_LIB_BRANCH}", changelog: false, retriever: modernSCM([$class: 'GitSCMSource', credentialsId: 'bitbucket-read', id: 'c6d54abc-8f5c-4bd3-a12d-97aa101563f7', remote: GIT_SHARED_LIB_REPOSITORY, traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
+
+cgci {
+	params = [
+		REMOVE_EXISTING_BUILD_CONFIG: false,
+		REMOVE_EXISTING_DEPLOYMENTS: false,
+		CD_CANDIDATE: false,
+        PROD_CANDIDATE: false,
+        STACK_ENV: false,
+		CG_APP_NAME: 'docker-java',
+		CG_APP_COMPONENT_NAME: 'dcip',
+		GIT_REPOSITORY: 'https://bitbucket.capgroup.com/scm/cicd/rt-docker-strategy.git',
+		BUILD_TAG: 'none',
+		DEPLOY_IMAGE: 'none',
+		APP_DIR: 'java/dcip',
+		CONFIG_DIR: 'java/dcip/cgcfg',
+		BUILD_BRANCH: '',
+		BUILD_HOSTING_CLUSTER: 'dev-int-usw1-aws.csp.capgroup.com',
+		BUILD_HOSTING_PROJECT: 'cgbuild',
+		PIPELINE_TASK_NODE: '',
+		BUILD_TASK_NODE: '',
+		INTEGRATION_TEST_TASK_NODE: '',
+		TRIGGER_CD_JOB_SUFFIX: 'cd-non-prod',
+        NOTIFICATION_CONDITION: 'always',
+		NOTIFICATION_RECIPIENT: "",
+		ANALYZE_ENABLE: false,
+		ANALYZE_VERSION: '1.0',
+		ANALYZE_BASEDIR: '.',
+		ANALYZE_SOURCE: 'src',
+		ANALYZE_COVERAGE_RESULT:'cg-artifacts/reports/JUnitReports/jestcov,cg-artifacts/reports/JUnitReports/jest',
+		SCAN_LIB_ENABLE: false,
+		SCAN_LIB_SOURCE: '.'		
+	]
+}

@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>dcip-app</artifactId>
+	<packaging>jar</packaging>
+	<name>dcip-app</name>
+
+	<parent>
+		<groupId>com.capgroup.dcip</groupId>
+		<artifactId>dcip</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.capgroup.dcip</groupId>
+			<artifactId>dcip-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgroup.dcip</groupId>
+			<artifactId>dcip-infrastructure</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgroup.dcip</groupId>
+			<artifactId>dcip-capital-connect</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgroup.dcip</groupId>
+			<artifactId>dcip-cmps</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.capgroup.dcip</groupId>
+			<artifactId>dcip-sandp</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+        <dependency>
+            <groupId>com.capgroup.dcip</groupId>
+            <artifactId>dcip-document-storage</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+	</dependencies>
+
+</project>

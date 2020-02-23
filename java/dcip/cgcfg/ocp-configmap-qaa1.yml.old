@@ -1,0 +1,34 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+ creationTimestamp: null
+ name: spring-boot-configmap-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+
+
+#--------------------------------------------------------------------------------
+# OpenShift API Objects
+#--------------------------------------------------------------------------------
+objects:
+
+#--------------------------------------------------------------------------------
+# ConfigMap 
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  data:
+    application_oc_release.properties: "# DCIP database config\r\nspring.datasource.url=${dcip_db_url}\r\nspring.datasource.username=${dcip_db_username}\r\nspring.datasource.password=${dcip_db_password}\r\nspring.datasource.driver-class-name=org.postgresql.Driver\r\nspring.datasource.hikari.connection-init-sql=SET search_path TO public,dcipsqldb_qa5\r\nspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQL95Dialect\r\nspring.jpa.database-platform=org.hibernate.dialect.PostgreSQL95Dialect\r\nspring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true\r\nspring.jpa.properties.hibernate.id.new_generator_mappings=false\r\n#spring.jpa.properties.hibernate.default_schema=dcipsqldb_qa1\r\nspring.jpa.hibernate.naming.implicit-strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy\r\nspring.jpa.hibernate.naming.physical-strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy\r\n\r\n\r\nspring.jpa.properties.hibernate.id.new_generator_mappings=true\r\nspring.jpa.properties.hibernate.show_sql=false\r\n\r\n# S&P database config\r\nsandp.datasource.url=${sandp_db_url}\r\nsandp.datasource.password=${sandp_db_password}\r\nsandp.datasource.username=${sandp_db_username}\r\nsandp.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver\r\nsandp.company-search.wildcard-prefix=false\r\n\r\ncmps.url=${cmps_url}\r\ncmps.userName=${cmps_username}\r\ncmps.password=${cmps_password}\r\n\r\nlogging.level.org.hibernate.SQL=debug\r\nlogging.level.com.capgroup.dcip.webapi.security=TRACE\r\nlogging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE\r\nlogging.level.com.capgroup.dcip.util.data=DEBUG\r\nlogging.level.com.capgroup.dcip.app.canvas=DEBUG\r\nlogging.level.com.capgroup.dcip.sand.company=DEBUG\r\nlogging.level.com.capgroup.dcip.app.event=DEBUG\r\nlogging.level.com.capgroup.dcip.domain.entity=DEBUG\r\nlogging.level.com.capgroup.dcip.webapi.security.UserProfileSecurityFilter=TRACE\r\nlogging.level.com.capgroup.dcip.webapi.security.JWTFilter=DEBUG\r\nlogging.level.com.capgroup.dcip.app.alert=DEBUG\r\nlogging.level.com.capgroup.dcip.app.thesis.service=DEBUG\r\nlogging.level.com.capgroup.dcip.app.relationship=DEBUG\r\nlogging.level.com.capgroup.dcip.app.identity.IdentityMappingServiceImpl=DEBUG\r\nlogging.level.com.capgroup.dcip.sand.company.CompanyRepositoryImpl=DEBUG\r\nlogging.level.org.springframework.web.filter.CommonsRequestLoggingFilter=TRACE\r\nlogging.level.com.capgroup.samples.oidc.OpenIdConnectSigningKeyResolver=TRACE\r\nlogging.level.org.springframework.web.client=DEBUG\r\n\r\nserver.port=8080\r\n\r\nidentityMapping.preload=false\r\n\r\nmanagement.endpoints.web.exposure.include=*\r\n\r\nspring.jackson.date-format=com.fasterxml.jackson.databind.util.ISO8601DateFormat\r\nspring.jackson.serialization.write-dates-as-timestamps=false\r\nspring.jackson.serialization.write-durations-as-timestamps=true\r\n\r\nspring.mvc.throw-exception-if-no-handler-found=true\r\n\r\nokta.oauth2.issuer=https://capgroup-qa.oktapreview.com/oauth2/ausetx52lmMmghkHI0h7 \r\noidc.audience=0oaes22rc8XAM1eVg0h7\r\noidc.authority=https://capgroup-qa.oktapreview.com/oauth2/ausetx52lmMmghkHI0h7 \r\noidc.metadataRefreshInterval=PT60S\r\n\r\nsecurity.ignored=/**\r\nsecurity.basic.enabled=true\r\n\r\napplication.url=http://dcip-core-aa00002721-dcip-dev-01.apps.dev-int-usw1-aws.csp.capgroup.com \r\ndocument.service.url=https://dcip-clouddocument-route-aa00002721-dcip-qa-01.apps.qa-int-usw1-aws.csp.capgroup.com/api/dcip/storage"
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: '2019-06-20T06:27:03Z'
+    name: dcip-core-qa1-properties
+    namespace: aa00002721-dcip-qa-01
+    resourceVersion: '92593935'
+    selfLink: /api/v1/namespaces/aa00002721-dcip-qa-01/configmaps/dcip-core-qa1-properties
+    uid: 6aef8983-9324-11e9-9b0d-02f44f0ed610

@@ -1,0 +1,35 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+ creationTimestamp: null
+ name: spring-boot-configmap-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+
+
+#--------------------------------------------------------------------------------
+# OpenShift API Objects
+#--------------------------------------------------------------------------------
+objects:
+
+#--------------------------------------------------------------------------------
+# ConfigMap 
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  data:
+    application_oc_release.properties: "spring.datasource.url=${dcip_db_url}\r\nspring.datasource.username=${dcip_db_username}\r\nspring.datasource.password=${dcip_db_password}\r\nspring.datasource.driver-class-name=org.postgresql.Driver\r\nspring.datasource.hikari.connection-init-sql=SET search_path TO public,appl_sql_dcip_user\r\nspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQL95Dialect\r\nspring.jpa.database-platform=org.hibernate.dialect.PostgreSQL95Dialect\r\nspring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true\r\n\r\nsandp.datasource.url=${sandp_db_url}\r\nsandp.datasource.password=${sandp_db_password}\r\nsandp.datasource.username=${sandp_db_username}\r\nsandp.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver\r\nsandp.company-search.wildcard-prefix=false\r\n\r\nidentityMapping.preload=true\r\n\r\nspring.jpa.properties.hibernate.id.new_generator_mappings=true\r\n\r\ncapital-connect.root-uri=http://capitalconnect/_vti_bin/suggestions.svc/multi\r\ncapital-connect.userName=CPZPRDAA00002721S001\r\ncapital-connect.password=\r\ncapital-connect.listing.concurrent-threads=3\r\n\r\ncmps.url=${cmps_url}\r\ncmps.userName=${cmps_username}\r\ncmps.password=${cmps_password}\r\ncmps.account.concurrent-threads=3\r\n\r\n\r\n#spring.jpa.properties.hibernate.jdbc.time_zone=UTC\r\nserver.port=8443\r\nserver.http.schema.port=8080\r\nspring.h2.console.enabled=true\r\nspring.jackson.date-format=com.fasterxml.jackson.databind.util.StdDateFormat\r\nspring.mvc.throw-exception-if-no-handler-found=true\r\nspring.jackson.serialization.write-dates-as-timestamps=true\r\n#spring.jackson.serialization.write-dates-with-zone-id=true\r\nspring.jackson.serialization.write-durations-as-timestamps=true\r\n\r\nlogging.level.org.hibernate.SQL=DEBUG\r\nlogging.level.org.hibernate.persister.entity=DEBUG\r\n#logging.level.org.hibernate.type=TRACE\r\n#logging.level.org.hibernate.type.descriptor.sql=TRACE\r\n#logging.level.org.hibernate.type.descriptor.sql.BasicBinders=TRACE\r\nlogging.level.org.springframework.web.filter.CommonsRequestLoggingFilter=TRACE\r\n\r\nokta.oauth2.issuer=okta.oauth2.issuer\r\noidc.audience=0oa1en54gzwNlKfmE1d8\r\noidc.authority=https://capgroup.okta.com/oauth2/aus1en54pkrKZQkn01d8\r\noidc.metadataRefreshInterval=PT60S\r\n\r\napplication.url=https://r20.capgroup.com\r\n\r\nserver.tomcat.remote-ip-header=x-forwarded-for\r\nserver.tomcat.protocol-header=x-forwarded-proto\r\n\r\napplication.name=R20\r\nbuild.version=1.12\r\nbuild.timestamp=2019-06-16 20:05:00\r\napp.java.version=11.x"
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: '2019-08-23T03:44:01Z'
+    name: dcip-core-prod-properties
+    namespace: aa00002721-dcip-prod-01
+    resourceVersion: '89740689'
+    selfLink: >-
+      /api/v1/namespaces/aa00002721-dcip-prod-01/configmaps/dcip-core-prod-properties
+    uid: 3edcbcc7-c558-11e9-b969-02d5d16e8d76

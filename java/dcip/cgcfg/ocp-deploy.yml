@@ -1,0 +1,160 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: dcip-java-template
+message: The core microservice for DCIP
+metadata:
+  annotations:
+    description: The core microservice for DCIP
+  name: dcip-java-template
+objects:
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      labels:
+        app: ${CG_APP_COMPONENT_NAME}
+      name: ${CG_APP_COMPONENT_NAME}
+    spec:
+      replicas: ${{APP_PODS}}
+      revisionHistoryLimit: 20
+      minReadySeconds: 30
+      progressDeadlineSeconds: 900
+      selector:
+        app: ${CG_APP_COMPONENT_NAME}
+      strategy:
+        type: Rolling
+      template:
+        metadata:
+          labels:
+            app: ${CG_APP_COMPONENT_NAME}
+        spec:
+          containers:
+            - image: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}/${CG_APP_COMPONENT_NAME}${DEPLOY_IMAGE}
+              imagePullPolicy: Always
+              name: ${CG_APP_COMPONENT_NAME}
+              livenessProbe:
+                httpGet:
+                  path: /actuator/health
+                  port: 8080
+                initialDelaySeconds: 240
+                timeoutSeconds: 2
+                periodSeconds: 10
+                failureThreshold: 3
+              readinessProbe:
+                httpGet:
+                  path: /actuator/health
+                  port: 8080
+                initialDelaySeconds: 240
+                timeoutSeconds: 2
+                periodSeconds: 10
+                failureThreshold: 3
+              resources:
+                request:
+                  cpu: ${APP_CPU_REQUIRED}
+                  memory: ${APP_MEMORY_REQUIRED}
+                limits:
+                  cpu: ${APP_CPU_LIMIT}
+                  memory: ${APP_MEMORY_LIMIT}
+              env:
+                - name: APPDYNAMICS_CONTROLLER_PORT
+                  value: "443"
+                - name: APPDYNAMICS_CONTROLLER_SSL_ENABLED
+                  value: "true"
+                - name: APPDYNAMICS_AGENT_APPLICATION_NAME
+                  value: ${APPDYNAMICS_AGENT_APPLICATION_NAME}
+                - name: APPDYNAMICS_AGENT_TIER_NAME
+                  value: "Onboard"
+                - name: APPDYNAMICS_AGENT_NODE_NAME
+                  value: "Onboard-service"
+                - name: APPDYNAMICS_AGENT_BASE_DIR
+                  value: "/deployments/tools/app-dynamics/ApplicationAgent"
+                - name: APPDYNAMICS_AGENT_NODE_REUSE
+                  value: "true"
+                - name: APPDYNAMICS_AGENT_REUSE_NODE_NAME_PREFIX
+                  value: "Onboard-service_"
+                - name: APPDYNAMICS_NODE_SHUTDOWN_HISTORICAL
+                  value: "true"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          dnsPolicy: ClusterFirst
+          restartPolicy: Always
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+      triggers:
+        - type: ConfigChange
+
+  # SERVICE
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      labels:
+        app: ${APP_NAME}
+      name: ${APP_NAME}
+    spec:
+      ports:
+        - name: 8080-tcp
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      selector:
+        app: ${CG_APP_COMPONENT_NAME}
+      type: ClusterIP
+
+parameters:
+  - name: CG_APP_NAME
+    description: "CG Application Name"
+    value: ${CG_APP_NAME}
+  - name: BUILD_HOSTING_PROJECT
+    description: "Build Hosting Project"
+    value: ${BUILD_HOSTING_PROJECT}
+  - name: CG_APP_COMPONENT_NAME
+    description: "CG Application Component Name"
+    value: ${CG_APP_COMPONENT_NAME}
+  - name: APP_CPU_REQUIRED
+    description: "Required CPU"
+    value: ${APP_CPU_REQUIRED}
+  - name: APP_CPU_LIMIT
+    description: "Limit CPU"
+    value: ${APP_CPU_LIMIT}
+  - name: APP_MEMORY_REQUIRED
+    description: "Required Memory"
+    value: ${APP_MEMORY_REQUIRED}
+  - name: APP_MEMORY_LIMIT
+    description: "Limit Memory"
+    value: ${APP_MEMORY_LIMIT}
+  - name: APP_DISPLAY_NAME
+    description: "Application Display Name"
+    value: ${APP_DISPLAY_NAME}
+  - name: HOSTING_CLUSTER
+    description: "Hosting Cluster"
+    value: ${HOSTING_CLUSTER}
+  - name: HOSTING_PROJECT
+    description: "Hosting Project"
+    value: ${HOSTING_PROJECT}
+  - name: DEPLOY_IMAGE
+    description: "Deployment Container Image"
+    value: ${DEPLOY_IMAGE}
+  - name: DOCKER_REGISTRY
+    description: "Image Registry"
+    value: ${DOCKER_REGISTRY}
+  - name: APP_PODS
+    description: "App Pods"
+    value: "1"
+  - name: SSL_CERT
+    description: The certificate the route should use for SSL/HTTPS
+    displayName: SSL Certificate
+    required: false
+  - name: SSL_KEY
+    description: The key the route should use for SSL/HTTPS
+    displayName: SSL Key
+    required: false
+  - name: APPDYNAMICS_AGENT_APPLICATION_NAME
+    description: App Dynamics application name
+    displayName: Name of AppDynamics Application
+    required: true
+  - name: APP_NAME
+    description: The name for the application.
+    displayName: Application Name
+    required: true
