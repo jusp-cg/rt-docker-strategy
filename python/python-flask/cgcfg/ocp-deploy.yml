@@ -1,0 +1,229 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: python-flask-deploy-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+- name: CG_APP_NAME
+  description: "CG Application Name"
+  value: "UndefinedCGAppName"
+- name: BUILD_HOSTING_PROJECT
+  description: "Build Hosting Project"
+  value: "UndefinedBuildHostingProject"
+- name: CG_APP_COMPONENT_NAME
+  description: "CG Application Component Name"
+  value: "UndefinedCGComponentName"
+- name: APP_ENV
+  description: "Application Environment"
+  value: "UndefinedAppENV"
+- name: APP_DISPLAY_NAME
+  description: "Application Display Name"
+  value: "UndefinedAppDisplayName"
+- name: HOSTING_CLUSTER
+  description: "Hosting Cluster"
+  value: "UndefinedCluster"
+- name: HOSTING_PROJECT
+  description: "Hosting Project"
+  value: "UndefinedHostingProject"
+- name: DEPLOY_IMAGE
+  description: "Deployment Container Image"
+  value: "UndefinedDeployImage"
+- name: DOCKER_REGISTRY
+  description: "Image Registry"
+  value: "UndefinedDockerRegistry"
+- name: APP_PODS
+  description: "App Pods"
+  value: "1"
+- name: APP_CPU_REQUIRED
+  description: "App CPU Required"
+  value: "100m"
+- name: APP_CPU_LIMIT
+  description: "App CPU Limit"
+  value: "500m"
+- name: APP_MEMORY_REQUIRED
+  description: "App Memory Required"
+  value: "1Gi"
+- name: APP_MEMORY_LIMIT
+  description: "App Memory Limit"
+  value: "1Gi"
+
+#--------------------------------------------------------------------------------
+# OpenShift API Objects
+#--------------------------------------------------------------------------------
+objects:
+
+#--------------------------------------------------------------------------------
+# Deployment Config
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: CGCustom
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+  spec:
+    replicas: ${{APP_PODS}}
+    revisionHistoryLimit: 10
+    selector:
+      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: CGCustom
+        creationTimestamp: null
+        labels:
+          app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+          deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      spec:
+        containers:
+        - env:
+          - name: APP_DISPLAY_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+                key: display.name
+          image: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}${DEPLOY_IMAGE}
+          livenessProbe:
+            failureThreshold: 8
+            httpGet:
+              path: /
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 60
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 15
+          name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+          ports:
+          - containerPort: 5000
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 5000
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: ${APP_CPU_REQUIRED}
+              memory: ${APP_MEMORY_REQUIRED}
+            limits:
+              cpu: ${APP_CPU_LIMIT}
+              memory: ${APP_MEMORY_LIMIT}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /opt/app-root/src/db.properties
+            name: cfgvol1
+            subPath: db.properties
+          - mountPath: /opt/app-root/src/service.properties
+            name: cfgvol1
+            subPath: service.properties
+          - mountPath: /opt/app-root/src/user.properties
+            name: cfgvol1
+            subPath: user.properties
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        imagePullSecrets:
+        - name: external-registry
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - configMap:
+            defaultMode: 420
+            name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+          name: cfgvol1
+    test: false
+    triggers:
+    - type: ConfigChange
+  status:
+    availableReplicas: 0
+    latestVersion: 0
+    observedGeneration: 0
+    replicas: 0
+    unavailableReplicas: 0
+    updatedReplicas: 0
+
+#--------------------------------------------------------------------------------
+# Service
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: CGCustom
+    creationTimestamp: null
+    labels:
+      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+  spec:
+    ports:
+    - name: 5000-tcp
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+
+#--------------------------------------------------------------------------------
+# Route
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: null
+    labels:
+      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+  spec:
+    host: ${CG_APP_COMPONENT_NAME}-${APP_ENV}-${HOSTING_PROJECT}.apps.${HOSTING_CLUSTER}
+    port:
+      targetPort: 5000-tcp
+    to:
+      kind: Service
+      name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2018-07-24T23:58:41Z
+        status: "True"
+        type: Admitted
+      host: ${CG_APP_COMPONENT_NAME}-${APP_ENV}-${HOSTING_PROJECT}.apps.${HOSTING_CLUSTER}
+      routerName: router
+      wildcardPolicy: None

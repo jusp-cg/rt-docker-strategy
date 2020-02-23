@@ -1,0 +1,75 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: spring-boot-configmap-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+- name: CG_APP_NAME
+  description: "CG Application Name"
+  value: "UndefinedCGAppName"
+- name: BUILD_HOSTING_PROJECT
+  description: "Build Hosting Project"
+  value: "UndefinedBuildHostingProject"
+- name: CG_APP_COMPONENT_NAME
+  description: "CG Application Component Name"
+  value: "UndefinedCGComponentName"
+- name: APP_ENV
+  description: "Application Environment"
+  value: "UndefinedAppENV"
+- name: APP_DISPLAY_NAME
+  description: "Application Display Name"
+  value: "UndefinedAppDisplayName"
+- name: HOSTING_CLUSTER
+  description: "Hosting Cluster"
+  value: "UndefinedCluster"
+- name: HOSTING_PROJECT
+  description: "Hosting Project"
+  value: "UndefinedHostingProject"
+- name: DEPLOY_IMAGE
+  description: "Deployment Container Image"
+  value: "UndefinedDeployImage"
+- name: DOCKER_REGISTRY
+  description: "Image Registry"
+  value: "UndefinedDockerRegistry"
+- name: APP_PODS
+  description: "App Pods"
+  value: "1"
+- name: APP_CPU_REQUIRED
+  description: "App CPU Required"
+  value: "100m"
+- name: APP_CPU_LIMIT
+  description: "App CPU Limit"
+  value: "500m"
+- name: APP_MEMORY_REQUIRED
+  description: "App Memory Required"
+  value: "1Gi"
+- name: APP_MEMORY_LIMIT
+  description: "App Memory Limit"
+  value: "1Gi"
+
+#--------------------------------------------------------------------------------
+# OpenShift API Objects
+#--------------------------------------------------------------------------------
+objects:
+
+#--------------------------------------------------------------------------------
+# ConfigMap
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  data:
+    service.properties: "workers=10\r\ntimeout=30\r\ndisplay.name=${APP_DISPLAY_NAME}\r\nenv=qa"
+    db.properties: "database=db100\r\nuser=dbuser100"
+    user.properties: "location=irv\r\nou=qa"
+    display.name: ${APP_DISPLAY_NAME}
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+

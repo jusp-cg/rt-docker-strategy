@@ -1,0 +1,40 @@
+def GIT_SHARED_LIB_REPOSITORY='https://bitbucket.capgroup.com/scm/cicd/jenkinslib.git'
+def GIT_SHARED_LIB_BRANCH='master'
+
+library identifier: "common@${GIT_SHARED_LIB_BRANCH}", changelog: false, retriever: modernSCM([$class: 'GitSCMSource', credentialsId: 'bitbucket-read', id: 'c6d54abc-8f5c-4bd3-a12d-97aa101563f7', remote: GIT_SHARED_LIB_REPOSITORY, traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
+
+cgci {
+	params = [
+		REMOVE_EXISTING_BUILD_CONFIG: true,
+		REMOVE_EXISTING_DEPLOYMENTS: true,
+		CD_CANDIDATE: true,
+        PROD_CANDIDATE: false,
+		CG_APP_NAME: 'docker-python',
+		CG_APP_COMPONENT_NAME: 'python-flask',
+		GIT_REPOSITORY: 'https://bitbucket.capgroup.com/scm/cicd/rt-docker-strategy.git',
+		BUILD_TAG: 'none',
+		DEPLOY_IMAGE: 'none',
+		APP_DIR: 'python/python-flask',			
+		CONFIG_DIR: 'python/python-flask/cgcfg',			
+		BUILD_BRANCH: 'master',
+		BUILD_HOSTING_CLUSTER: 'dev-int-usw1-aws.csp.capgroup.com',
+		BUILD_HOSTING_PROJECT: 'cgbuild',
+		PIPELINE_TASK_NODE: 'nodejs',
+		BUILD_TASK_NODE: 'nodejs',
+		INTEGRATION_TEST_TASK_NODE: 'nodejs',
+		TRIGGER_CD_JOB_SUFFIX: 'cd'
+	]
+
+	testScriptUnitTest = {
+	    echo "Running Unit Test Script"
+		sh("touch httpd-app/cgtmp/ciout/unit/Test.xml")
+		junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/unit/*.xml'
+	}
+	
+	testScriptIntegrationTest = {
+	    echo "Running Integration Test Script"
+		sh("touch httpd-app/cgtmp/ciout/integration/Test.xml")
+		junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/integration/*.xml'
+	    passedQA = true
+	}
+}

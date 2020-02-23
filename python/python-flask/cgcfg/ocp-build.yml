@@ -1,0 +1,109 @@
+#--------------------------------------------------------------------------------
+# Template
+#--------------------------------------------------------------------------------
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: python-flask-build-template
+
+#--------------------------------------------------------------------------------
+# Parameters
+#--------------------------------------------------------------------------------
+parameters:
+- name: CG_APP_NAME
+  description: "CG Application Name"
+  value: "UndefinedCGAppName"
+- name: BUILD_HOSTING_PROJECT
+  description: "Build Hosting Project"
+  value: "UndefinedBuildHostingProject"
+- name: CG_APP_COMPONENT_NAME
+  description: "CG Application Component Name"
+  value: "UndefinedAppComponentName"
+- name: GIT_REPOSITORY
+  description: "Git Repository"
+  value: "UndefinedGitRepository"
+- name: DOCKER_REGISTRY
+  description: "Docker Registry"
+  value: "UndefinedDockerRegistry"
+- name: DOCKER_TAG
+  description: "Docker Registry"
+  value: "latest"
+- name: APP_DIR
+  description: "Application Directory"
+  value: "python-flask"
+- name: BUILDER_IMAGE
+  description: "Builder Image"
+  value: "python:3.7"
+
+
+objects:
+#--------------------------------------------------------------------------------
+# Build Config
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: CGCustom
+    creationTimestamp: null
+    labels:
+      build: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+    name: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: DockerImage
+        name: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}:${DOCKER_TAG}
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: ${APP_DIR}
+      git:
+        uri: ${GIT_REPOSITORY}
+      sourceSecret:
+        name: bitbucket-read
+      type: Git
+    strategy:
+      dockerStrategy:
+        env:
+        from:
+          kind: DockerImage
+          name: ${BUILDER_IMAGE}
+      type: Docker
+    successfulBuildsHistoryLimit: 5
+    triggers: []
+  status:
+    lastVersion: 0
+
+#--------------------------------------------------------------------------------
+# Image Stream
+#--------------------------------------------------------------------------------
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: CGCustom
+    creationTimestamp: null
+    generation: 1
+    labels:
+      build: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+    name: ${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations: null
+      from:
+        kind: DockerImage
+        name: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}:latest
+      generation: null
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: ""
+  status:
+    dockerImageRepository: ""
