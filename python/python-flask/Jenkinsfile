@@ -7,7 +7,7 @@ cgci {
 	params = [
 		REMOVE_EXISTING_BUILD_CONFIG: true,
 		REMOVE_EXISTING_DEPLOYMENTS: true,
-		CD_CANDIDATE: true,
+		CD_CANDIDATE: false,
         PROD_CANDIDATE: false,
 		CG_APP_NAME: 'docker-python',
 		CG_APP_COMPONENT_NAME: 'python-flask',
