@@ -1,0 +1,3385 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v2",
+    "title": "Capital System Services v2"
+  },
+  "host": "https://anypoint.mulesoft.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/api/investment-administration/capital-system/v2/relationship-portfolios": {
+      "get": {
+        "tags": [
+          "Relationship"
+        ],
+        "operationId": "Relationship_GetRelationships",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "portfolio1Uids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "portfolio2Uids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "relationshipInvestmentPortfolioType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "AA",
+              "MR",
+              "RP",
+              "MX",
+              "GP",
+              "SG",
+              "ID",
+              "AD",
+              "AM",
+              "AR",
+              "AX",
+              "GA",
+              "GM",
+              "GR",
+              "GX",
+              "RM",
+              "SM",
+              "SR",
+              "SX",
+              "XM",
+              "FL",
+              "AT",
+              "CP",
+              "MG",
+              "IDM"
+            ]
+          },
+          {
+            "name": "investmentPortfolio1Type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "AA",
+              "MR",
+              "RP",
+              "MX",
+              "GP",
+              "SG",
+              "ID",
+              "AD",
+              "AM",
+              "AR",
+              "AX",
+              "GA",
+              "GM",
+              "GR",
+              "GX",
+              "RM",
+              "SM",
+              "SR",
+              "SX",
+              "XM",
+              "FL",
+              "AT",
+              "CP",
+              "MG",
+              "IDM"
+            ]
+          },
+          {
+            "name": "investmentPortfolio2Type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "AA",
+              "MR",
+              "RP",
+              "MX",
+              "GP",
+              "SG",
+              "ID",
+              "AD",
+              "AM",
+              "AR",
+              "AX",
+              "GA",
+              "GM",
+              "GR",
+              "GX",
+              "RM",
+              "SM",
+              "SR",
+              "SX",
+              "XM",
+              "FL",
+              "AT",
+              "CP",
+              "MG",
+              "IDM"
+            ]
+          },
+          {
+            "name": "investmentPortfolio1Property.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "investmentPortfolio1Property.value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "investmentPortfolio2Property.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "investmentPortfolio2Property.value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status.asOf",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "status.status",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Active",
+              "NotActive",
+              "NeverActive"
+            ]
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/RelationshipPortfoliosResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/relationship-portfolios/{portfolioUid}": {
+      "get": {
+        "tags": [
+          "Relationship"
+        ],
+        "operationId": "Relationship_GetRelationship",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "asOf",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/RelationshipPortfoliosResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetPortfolios",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "investmentPortfolioType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "AA",
+              "MR",
+              "RP",
+              "MX",
+              "GP",
+              "SG",
+              "ID",
+              "AD",
+              "AM",
+              "AR",
+              "AX",
+              "GA",
+              "GM",
+              "GR",
+              "GX",
+              "RM",
+              "SM",
+              "SR",
+              "SX",
+              "XM",
+              "FL",
+              "AT",
+              "CP",
+              "MG",
+              "IDM"
+            ]
+          },
+          {
+            "name": "portfolioCategory",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Investment",
+              "Index",
+              "Composite"
+            ]
+          },
+          {
+            "name": "containsValue",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "containsValueFields",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resultCount",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "investmentPortfolioProperty.name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "investmentPortfolioProperty.value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PortfoliosResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetPortfolio",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "asOf",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PortfoliosResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}/properties": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetProperties",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "asOf",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PortfolioPropertiesResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}/contacts": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetContacts",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/InvestmentPortfolioContactsResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}/managers": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetManagers",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ManagersResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}/members": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetMembers",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "investmentPortfolioMemberType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SG",
+              "MR",
+              "FL"
+            ]
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PortfoliosResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/portfolios/{portfolioUid}/memberof": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "operationId": "Portfolio_GetMemberOf",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUid",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "investmentPortfolioMemberType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "SG",
+              "MR",
+              "FL"
+            ]
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MemberOfResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/management-responsibilities": {
+      "get": {
+        "tags": [
+          "ManagementResponsibility"
+        ],
+        "operationId": "ManagementResponsibility_GetManagementResponsibilities",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioUids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "initials",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ManagersResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/investment-portfolio-properties": {
+      "post": {
+        "tags": [
+          "InvestmentPortfolioProperty"
+        ],
+        "operationId": "InvestmentPortfolioProperty_CreateInvestmentPortfolioProperty",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortfolioProperty"
+            }
+          },
+          {
+            "name": "portfolioUid",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "InvestmentPortfolioProperty"
+        ],
+        "operationId": "InvestmentPortfolioProperty_EditInvestmentPortfolioProperty",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "property",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortfolioProperty"
+            }
+          },
+          {
+            "name": "portfolioUid",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/index-portfolios": {
+      "post": {
+        "tags": [
+          "IndexPortfolio"
+        ],
+        "operationId": "IndexPortfolio_RegisterIndex",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "indexPortfolio",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IndexPortfolioCreate"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "IndexPortfolio"
+        ],
+        "operationId": "IndexPortfolio_UpdateIndex",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "indexPortfolio",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IndexPortfolioCreate"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/index-portfolios/IsIndexRegistered/{portfolioId}": {
+      "get": {
+        "tags": [
+          "IndexPortfolio"
+        ],
+        "operationId": "IndexPortfolio_IsIndexRegistered",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/index-portfolios/{indexId}": {
+      "get": {
+        "tags": [
+          "IndexPortfolio"
+        ],
+        "operationId": "IndexPortfolio_GetCmpsPortfolioId",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "indexId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/index-portfolios/IsIndexAssociated/{portfolioId}": {
+      "get": {
+        "tags": [
+          "IndexPortfolio"
+        ],
+        "operationId": "IndexPortfolio_IsIndexAssociated",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PortfolioBenchmark"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/accountcontainers": {
+      "get": {
+        "tags": [
+          "AccountContainer"
+        ],
+        "operationId": "AccountContainer_GetHighNetWorthStructures",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hnwStructureID",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "hnwStructureName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hnwStructureNumber",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hnwStructureTypeCode",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "HH",
+              "PCA",
+              "RR",
+              "FR"
+            ]
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HighNetWorthStructuresResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "AccountContainer"
+        ],
+        "operationId": "AccountContainer_EditHighNetworthStructure",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hnws",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/HighNetWorthStructureViewModel"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "AccountContainer"
+        ],
+        "operationId": "AccountContainer_CreateHighNetworthStructure",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hnws",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/HighNetWorthStructureViewModel"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/accountcontainers/{hnwStructureID}": {
+      "get": {
+        "tags": [
+          "AccountContainer"
+        ],
+        "operationId": "AccountContainer_GetHighNetWorthStructure",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "hnwStructureID",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/HighNetWorthStructuresResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/api/investment-administration/capital-system/v2/accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_GetAllAccounts",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "portfolioUid",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "asOf",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "modifiedSince",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountsResponse"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_CreateAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iac",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InvestmentAccountCreate"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Account_EditAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Account"
+            }
+          },
+          {
+            "name": "clientId",
+            "in": "header",
+            "description": "HTTP Header Parameter - Client system name that invoked this api",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "CG-CorrelationId",
+            "in": "header",
+            "description": "HTTP Header Parameter - GUID to uniquely identify requests and correlate request & response, end-to-end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metaData",
+            "in": "header",
+            "description": "HTTP Header Parameter -  Comma separated name-value pairs of key elements of request",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "PortfolioPropertyCriteria": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "PortfolioStatusCriteria": {
+      "type": "object",
+      "properties": {
+        "asOf": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "Active",
+            "NotActive",
+            "NeverActive"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponseMetaData": {
+      "required": [
+        "apiVersion",
+        "timestamp"
+      ],
+      "type": "object",
+      "properties": {
+        "apiVersion": {
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse": {
+      "required": [
+        "responseMetaData"
+      ],
+      "type": "object",
+      "properties": {
+        "responseMetaData": {
+          "$ref": "#/definitions/ApiResponseMetaData"
+        }
+      }
+    },
+    "Portfolio": {
+      "required": [
+        "portfolioUid",
+        "name",
+        "category"
+      ],
+      "type": "object",
+      "properties": {
+        "portfolioUid": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Investment",
+            "Index",
+            "Composite"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioTypeUid": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "investmentPortfolioTypeCode": {
+          "enum": [
+            "AA",
+            "MR",
+            "RP",
+            "MX",
+            "GP",
+            "SG",
+            "ID",
+            "AD",
+            "AM",
+            "AR",
+            "AX",
+            "GA",
+            "GM",
+            "GR",
+            "GX",
+            "RM",
+            "SM",
+            "SR",
+            "SX",
+            "XM",
+            "FL",
+            "AT",
+            "CP",
+            "MG",
+            "IDM"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioNumber": {
+          "type": "string"
+        },
+        "investmentPortfolioName": {
+          "type": "string"
+        },
+        "portfolioAliasName": {
+          "type": "string"
+        }
+      }
+    },
+    "RelationshipPortfolio": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Portfolio"
+        },
+        {
+          "required": [
+            "portfolio1",
+            "portfolio2"
+          ],
+          "type": "object",
+          "properties": {
+            "portfolio1": {
+              "$ref": "#/definitions/Portfolio"
+            },
+            "portfolio2": {
+              "$ref": "#/definitions/Portfolio"
+            }
+          }
+        }
+      ]
+    },
+    "RelationshipPortfoliosResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "relationshipPortfolios"
+          ],
+          "type": "object",
+          "properties": {
+            "relationshipPortfolios": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RelationshipPortfolio"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ErrorMessage": {
+      "required": [
+        "id",
+        "code",
+        "message",
+        "createdDate"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "errors"
+          ],
+          "type": "object",
+          "properties": {
+            "errors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ErrorMessage"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PortfolioIdentifiers": {
+      "required": [
+        "portfolioIdentifier"
+      ],
+      "type": "object",
+      "properties": {
+        "portfolioIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "investmentAccountPortfolioIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "managementResponsibilityPortfolioIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "legacyAggregateIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "legacyInvestmentAccountIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "legacyManagerIdentifier": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "SuccessCollection_PortfolioIdentifiers": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "results": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/PortfolioIdentifiers"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PortfoliosResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "portfolios"
+          ],
+          "type": "object",
+          "properties": {
+            "portfolios": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PortfolioProperties": {
+      "required": [
+        "portfolioUid",
+        "name",
+        "category"
+      ],
+      "type": "object",
+      "properties": {
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PortfolioProperty"
+          }
+        },
+        "portfolioUid": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Investment",
+            "Index",
+            "Composite"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioTypeUid": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "investmentPortfolioTypeCode": {
+          "enum": [
+            "AA",
+            "MR",
+            "RP",
+            "MX",
+            "GP",
+            "SG",
+            "ID",
+            "AD",
+            "AM",
+            "AR",
+            "AX",
+            "GA",
+            "GM",
+            "GR",
+            "GX",
+            "RM",
+            "SM",
+            "SR",
+            "SX",
+            "XM",
+            "FL",
+            "AT",
+            "CP",
+            "MG",
+            "IDM"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioNumber": {
+          "type": "string"
+        },
+        "investmentPortfolioName": {
+          "type": "string"
+        },
+        "portfolioAliasName": {
+          "type": "string"
+        }
+      }
+    },
+    "PortfolioProperty": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "PortfolioPropertiesResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "properties"
+          ],
+          "type": "object",
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/PortfolioProperties"
+            }
+          }
+        }
+      ]
+    },
+    "InvestmentPortfolioContactsResponse": {
+      "required": [
+        "contacts",
+        "responseMetaData"
+      ],
+      "type": "object",
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InvestmentPortfolioContact"
+          }
+        },
+        "responseMetaData": {
+          "$ref": "#/definitions/ApiResponseMetaData"
+        }
+      }
+    },
+    "InvestmentPortfolioContact": {
+      "required": [
+        "contactRank"
+      ],
+      "type": "object",
+      "properties": {
+        "contactRank": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "contactTypeCode": {
+          "type": "string"
+        },
+        "cgPersonUid": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "contactName": {
+          "type": "string"
+        }
+      }
+    },
+    "ManagementResponsibility": {
+      "required": [
+        "managementResponsibilityRoleTypeCode",
+        "managementResponsibilityRoleTypeUid",
+        "managementResponsibilityTypeCode",
+        "managementResponsibilityTypeUid",
+        "portfolioUid",
+        "name",
+        "category"
+      ],
+      "type": "object",
+      "properties": {
+        "managementResponsibilityRoleTypeCode": {
+          "enum": [
+            "CL",
+            "OV",
+            "IN"
+          ],
+          "type": "string"
+        },
+        "managementResponsibilityRoleTypeUid": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "managementResponsibilityTypeCode": {
+          "enum": [
+            "MG",
+            "AN",
+            "AD"
+          ],
+          "type": "string"
+        },
+        "managementResponsibilityTypeUid": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "managementResponsibilityInitials": {
+          "type": "string"
+        },
+        "investmentDivisionUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "thirteenGInvestmentDivisionUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portfolioUid": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "Investment",
+            "Index",
+            "Composite"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioTypeUid": {
+          "format": "int32",
+          "type": "integer",
+          "readOnly": true
+        },
+        "investmentPortfolioTypeCode": {
+          "enum": [
+            "AA",
+            "MR",
+            "RP",
+            "MX",
+            "GP",
+            "SG",
+            "ID",
+            "AD",
+            "AM",
+            "AR",
+            "AX",
+            "GA",
+            "GM",
+            "GR",
+            "GX",
+            "RM",
+            "SM",
+            "SR",
+            "SX",
+            "XM",
+            "FL",
+            "AT",
+            "CP",
+            "MG",
+            "IDM"
+          ],
+          "type": "string"
+        },
+        "investmentPortfolioNumber": {
+          "type": "string"
+        },
+        "investmentPortfolioName": {
+          "type": "string"
+        },
+        "portfolioAliasName": {
+          "type": "string"
+        }
+      }
+    },
+    "ManagersResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "managers"
+          ],
+          "type": "object",
+          "properties": {
+            "managers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ManagementResponsibility"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "MemberOfResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "memberOf"
+          ],
+          "type": "object",
+          "properties": {
+            "memberOf": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Portfolio"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "IndexPortfolioCreate": {
+      "required": [
+        "indexId",
+        "longName",
+        "shortName",
+        "currency",
+        "returnType",
+        "baseCurrency",
+        "indexType",
+        "valuationFrequency",
+        "firstQuoteDate",
+        "closingDate",
+        "marsId",
+        "startDate",
+        "endDate"
+      ],
+      "type": "object",
+      "properties": {
+        "portfolioId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "indexId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "longName": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shortName": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "currency": {
+          "maxLength": 3,
+          "minLength": 0,
+          "type": "string"
+        },
+        "returnType": {
+          "maxLength": 11,
+          "minLength": 0,
+          "type": "string"
+        },
+        "baseCurrency": {
+          "maxLength": 3,
+          "minLength": 0,
+          "type": "string"
+        },
+        "indexType": {
+          "maxLength": 1,
+          "minLength": 0,
+          "type": "string"
+        },
+        "valuationFrequency": {
+          "maxLength": 1,
+          "minLength": 0,
+          "type": "string"
+        },
+        "rebalanceFrequency": {
+          "maxLength": 1,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstQuoteDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "closingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "marsId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "PortfolioBenchmark": {
+      "type": "object",
+      "properties": {
+        "isAssociated": {
+          "type": "boolean"
+        },
+        "startdate": {
+          "type": "string"
+        },
+        "enddate": {
+          "type": "string"
+        }
+      }
+    },
+    "HighNetWorthStructureViewModel": {
+      "required": [
+        "hnwStructureName",
+        "hnwStructureNumber",
+        "hnwStructureTypeCode"
+      ],
+      "type": "object",
+      "properties": {
+        "hnwStructureID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "hnwStructureName": {
+          "maxLength": 200,
+          "minLength": 0,
+          "type": "string"
+        },
+        "hnwStructureNumber": {
+          "type": "string"
+        },
+        "hnwStructureTypeCode": {
+          "enum": [
+            "HH",
+            "PCA",
+            "RR",
+            "FR"
+          ],
+          "type": "string"
+        },
+        "openingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "closeDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "highNetWorthMembers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HighNetWorthStructureMember"
+          }
+        }
+      }
+    },
+    "HighNetWorthStructureMember": {
+      "required": [
+        "hnwMemberID",
+        "hnwMemberTypeCode"
+      ],
+      "type": "object",
+      "properties": {
+        "hnwMemberID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "hnwMemberTypeCode": {
+          "enum": [
+            "AA",
+            "PCA",
+            "RR",
+            "FR"
+          ],
+          "type": "string"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "HighNetWorthStructuresResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "highNetWorthStructures"
+          ],
+          "type": "object",
+          "properties": {
+            "highNetWorthStructures": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HighNetWorthStructureViewModel"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "InvestmentAccountCreate": {
+      "required": [
+        "abbreviatedLegalName",
+        "abbreviationCode",
+        "accountSource",
+        "investmentAccountStatusId",
+        "baseCurrencyId",
+        "contractingCompanyCGCompanyCode",
+        "conversionDate",
+        "exchangeRateSource",
+        "fiscalYearEndMonthNumber",
+        "fiscalYearEndDayNumber",
+        "fundedDate",
+        "incomeDistributionIndicator",
+        "accountNumber",
+        "investmentAccountTypeCode",
+        "investmentAdvisorCGCompanyCode",
+        "investmentAssetClassId",
+        "investmentObjectiveId",
+        "investmentRegionCode",
+        "legalName",
+        "operatingCurrencyId",
+        "pricingPlanHierarchyUID",
+        "proxyVotingIndicator",
+        "highNetWorthAccountTypeCode",
+        "reportingName",
+        "taxCountryUID",
+        "testAccountIndicator",
+        "vFlexIndicator"
+      ],
+      "type": "object",
+      "properties": {
+        "abbreviatedLegalName": {
+          "type": "string"
+        },
+        "abbreviationCode": {
+          "type": "string"
+        },
+        "accountSource": {
+          "type": "string"
+        },
+        "investmentAccountStatusId": {
+          "enum": [
+            "Skeleton",
+            "Active",
+            "Terminated"
+          ],
+          "type": "string"
+        },
+        "baseCurrencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "contractingCompanyCGCompanyCode": {
+          "type": "string"
+        },
+        "conversionDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "serviceProviderName": {
+          "type": "string"
+        },
+        "exchangeRateSource": {
+          "enum": [
+            "CG",
+            "WM"
+          ],
+          "type": "string"
+        },
+        "fiscalYearEndMonthNumber": {
+          "format": "int32",
+          "maximum": 12,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "fiscalYearEndDayNumber": {
+          "format": "int32",
+          "maximum": 31,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "fundedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "gicCashMonitoringHighThresholdPercent": {
+          "format": "double",
+          "pattern": "^[0-9]{0,10}([.][0-9]{1,8})?$",
+          "type": "number"
+        },
+        "gicCashMonitoringLowThresholdPercent": {
+          "format": "double",
+          "pattern": "^[0-9]{0,10}([.][0-9]{1,8})?$",
+          "type": "number"
+        },
+        "incomeDistributionIndicator": {
+          "type": "boolean"
+        },
+        "clientStatementIndustryClassificationSetId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "accountNumber": {
+          "maxLength": 8,
+          "minLength": 8,
+          "type": "string"
+        },
+        "investmentAccountTypeCode": {
+          "type": "string"
+        },
+        "investmentAdvisorCGCompanyCode": {
+          "type": "string"
+        },
+        "investmentAssetClassId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "investmentObjectiveId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "investmentRegionCode": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "operatingCurrencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceProviderUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pendingTTradesIndicator": {
+          "type": "boolean"
+        },
+        "pricingPlanHierarchyUID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "proxyVotingIndicator": {
+          "type": "boolean"
+        },
+        "highNetWorthAccountTypeCode": {
+          "type": "string"
+        },
+        "reportingName": {
+          "type": "string"
+        },
+        "serviceProviderRoleTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "mandateDescription": {
+          "type": "string"
+        },
+        "serviceProviderTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceProviderAccountNumber": {
+          "type": "string"
+        },
+        "taxCountryUID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "taxIdentificationNumber": {
+          "type": "string"
+        },
+        "taxableIndicator": {
+          "type": "boolean"
+        },
+        "terminationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "testAccountIndicator": {
+          "type": "boolean"
+        },
+        "tradeForceBaseCurrencyIndicator": {
+          "type": "boolean"
+        },
+        "legalEntityId": {
+          "pattern": "^[a-zA-Z0-9]{1,21}$",
+          "type": "string"
+        },
+        "separateAccountTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vFlexIndicator": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Account": {
+      "required": [
+        "accountUid",
+        "portfolioUid",
+        "accountNumber",
+        "abbreviatedLegalName",
+        "abbreviationCode",
+        "accountType",
+        "accountStatus",
+        "investmentAssetClass",
+        "investmentObjective",
+        "testAccountIndicator",
+        "baseCurrencyUid",
+        "operatingCurrencyUid",
+        "vFlexIndicator"
+      ],
+      "type": "object",
+      "properties": {
+        "accountUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "portfolioUid": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "legalName": {
+          "type": "string"
+        },
+        "abbreviatedLegalName": {
+          "type": "string"
+        },
+        "abbreviationCode": {
+          "type": "string"
+        },
+        "reportingName": {
+          "type": "string"
+        },
+        "reportingConsolidationNumber": {
+          "type": "string"
+        },
+        "legalEntityUid": {
+          "pattern": "^[a-zA-Z0-9]{1,21}$",
+          "type": "string"
+        },
+        "accountType": {
+          "$ref": "#/definitions/AccountType"
+        },
+        "separateAccountTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "separateAccountTypeCode": {
+          "type": "string"
+        },
+        "separateAccountTypeName": {
+          "type": "string"
+        },
+        "cgCorporateTreasuryAccountTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "smaDeliveryTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "highNetWorthAccountTypeCode": {
+          "type": "string"
+        },
+        "fundType": {
+          "$ref": "#/definitions/FundType"
+        },
+        "fundSubType": {
+          "$ref": "#/definitions/FundSubType"
+        },
+        "fundOfFundIndicator": {
+          "type": "string"
+        },
+        "accountStatus": {
+          "$ref": "#/definitions/AccountStatus"
+        },
+        "fundedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "terminationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "accountSource": {
+          "type": "string"
+        },
+        "fiscalYearEndDayNumber": {
+          "format": "int32",
+          "maximum": 31,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "fiscalYearEndMonthNumber": {
+          "format": "int32",
+          "maximum": 12,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "proxyVotingIndicator": {
+          "type": "boolean"
+        },
+        "incomeDistributionIndicator": {
+          "type": "boolean"
+        },
+        "tradeForceBaseCurrencyIndicator": {
+          "type": "boolean"
+        },
+        "fundParticipantAccountIndicator": {
+          "type": "boolean"
+        },
+        "pendingTTradesIndicator": {
+          "type": "boolean"
+        },
+        "corporateActionReinvestmentIndicator": {
+          "type": "boolean"
+        },
+        "taxableIndicator": {
+          "type": "boolean"
+        },
+        "taxCountryUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "taxIdentificationNumber": {
+          "type": "string"
+        },
+        "investmentRegion": {
+          "$ref": "#/definitions/InvestmentRegion"
+        },
+        "investmentAssetClass": {
+          "$ref": "#/definitions/InvestmentAssetClass"
+        },
+        "investmentObjective": {
+          "$ref": "#/definitions/InvestmentObjective"
+        },
+        "exchangeRateSource": {
+          "type": "string"
+        },
+        "testAccountIndicator": {
+          "type": "boolean"
+        },
+        "accountingPeriods": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountingPeriod"
+          }
+        },
+        "clientStatementIndustryClassificationSetUid": {
+          "type": "string"
+        },
+        "mandateDescription": {
+          "type": "string"
+        },
+        "gicCashMonitoringHighThresholdPercent": {
+          "format": "double",
+          "pattern": "^[0-9]{0,10}([.][0-9]{1,8})?$",
+          "type": "number"
+        },
+        "gicCashMonitoringLowThresholdPercent": {
+          "format": "double",
+          "pattern": "^[0-9]{0,10}([.][0-9]{1,8})?$",
+          "type": "number"
+        },
+        "baseCashBufferAmount": {
+          "format": "double",
+          "type": "number"
+        },
+        "baseCurrencyUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "operatingCurrencyUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "conversionDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "vFlexIndicator": {
+          "type": "boolean"
+        },
+        "omnibusAccountPortfolioUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "accountCompanyRoles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountCompanyRole"
+          }
+        },
+        "accountServiceProviders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountServiceProvider"
+          }
+        }
+      }
+    },
+    "AccountType": {
+      "required": [
+        "accountTypeCode",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "accountTypeCode": {
+          "enum": [
+            "CTA",
+            "FUND",
+            "SA",
+            "SSA"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "FundType": {
+      "type": "object",
+      "properties": {
+        "fundTypeCode": {
+          "type": "string"
+        },
+        "fundTypeName": {
+          "type": "string"
+        }
+      }
+    },
+    "FundSubType": {
+      "type": "object",
+      "properties": {
+        "fundSubTypeCode": {
+          "type": "string"
+        },
+        "fundSubTypeName": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountStatus": {
+      "required": [
+        "accountStatusUid",
+        "accountStatusCode",
+        "accountStatusName"
+      ],
+      "type": "object",
+      "properties": {
+        "accountStatusUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "accountStatusCode": {
+          "enum": [
+            "SKL",
+            "ACT",
+            "TER"
+          ],
+          "type": "string"
+        },
+        "accountStatusName": {
+          "type": "string"
+        }
+      }
+    },
+    "InvestmentRegion": {
+      "type": "object",
+      "properties": {
+        "investmentRegionUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "investmentRegionCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "InvestmentAssetClass": {
+      "required": [
+        "investmentAssetClassUid",
+        "investmentAssetClassCode",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "investmentAssetClassUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "investmentAssetClassCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "InvestmentObjective": {
+      "required": [
+        "investmentObjectiveUid",
+        "investmentObjectiveCode",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "investmentObjectiveUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "investmentObjectiveCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountingPeriod": {
+      "required": [
+        "scheduledEndDate"
+      ],
+      "type": "object",
+      "properties": {
+        "scheduledEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodClosedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodTypeCode": {
+          "pattern": "^[M]{1}$",
+          "type": "string"
+        }
+      }
+    },
+    "AccountCompanyRole": {
+      "required": [
+        "companyRoleCode",
+        "companyRoleName",
+        "cgCompanyCode"
+      ],
+      "type": "object",
+      "properties": {
+        "companyRoleCode": {
+          "enum": [
+            "CNTR",
+            "INVAD",
+            "LGCYIA"
+          ],
+          "type": "string"
+        },
+        "companyRoleName": {
+          "type": "string"
+        },
+        "cgCompanyCode": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountServiceProvider": {
+      "required": [
+        "investmentAccountPortfolioUid",
+        "serviceProvider",
+        "serviceProviderRole"
+      ],
+      "type": "object",
+      "properties": {
+        "investmentAccountPortfolioUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceProvider": {
+          "$ref": "#/definitions/ServiceProvider"
+        },
+        "serviceProviderRole": {
+          "$ref": "#/definitions/ServiceProviderRoleType"
+        }
+      }
+    },
+    "ServiceProvider": {
+      "required": [
+        "serviceProviderUid",
+        "serviceProviderName",
+        "serviceProviderAccountNumber",
+        "investmentAccountServiceProviderTypeUid"
+      ],
+      "type": "object",
+      "properties": {
+        "serviceProviderUid": {
+          "format": "int32",
+          "maximum": 2147483647,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "serviceProviderName": {
+          "type": "string"
+        },
+        "serviceProviderAccountNumber": {
+          "type": "string"
+        },
+        "investmentAccountServiceProviderTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "ServiceProviderRoleType": {
+      "type": "object",
+      "properties": {
+        "serviceProviderRoleTypeUid": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceProviderRoleTypeCode": {
+          "type": "string"
+        },
+        "serviceProviderRoleTypeName": {
+          "type": "string"
+        },
+        "serviceProviderRoleTypeDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountsResponse": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ApiResponse"
+        },
+        {
+          "required": [
+            "accounts"
+          ],
+          "type": "object",
+          "properties": {
+            "accounts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Account"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic",
+      "description": "Basic HTTP Authentication"
+    }
+  },
+  "basePath": "/mocking/api/v1/links/eda29fde-d163-4fd1-a8ca-ff7bb958c3a5/mocking/api/v2/links/7c6f6942-53db-403a-9dd5-eb52fb8a0c19/",
+  "x-amf-hostTempLabel": "idh.capgroup.com",
+  "x-amf-basePathTempLabel": "/mocking/api/v2/links/eda29fde-d163-4fd1-a8ca-ff7bb958c3a5/mocking/api/v2/links/7c6f6942-53db-403a-9dd5-eb52fb8a0c19/"
+}
