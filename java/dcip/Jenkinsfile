@@ -29,14 +29,9 @@ cgci {
 		ANALYZE_ENABLE: false,
 		ANALYZE_VERSION: '1.0',
 		ANALYZE_BASEDIR: '.',
-		ANALYZE_SOURCE: 'src',
+		ANALYZE_SOURCE: '.',
 		ANALYZE_COVERAGE_RESULT:'cg-artifacts/reports/JUnitReports/jestcov,cg-artifacts/reports/JUnitReports/jest',
 		SCAN_LIB_ENABLE: false,
 		SCAN_LIB_SOURCE: '.'		
 	]
-	
-	 testScriptUnitTest = {
-        echo "Running Unit Test Script"
-        junit allowEmptyResults: true, testResults: 'cg-artifacts/test/*.xml'
-    }
 }
