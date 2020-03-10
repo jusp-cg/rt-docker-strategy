@@ -34,4 +34,9 @@ cgci {
 		SCAN_LIB_ENABLE: false,
 		SCAN_LIB_SOURCE: '.'		
 	]
+	
+	 testScriptUnitTest = {
+        echo "Running Unit Test Script"
+        junit allowEmptyResults: true, testResults: 'cg-artifacts/test/*.xml'
+    }
 }

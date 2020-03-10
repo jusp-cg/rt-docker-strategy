@@ -34,7 +34,7 @@ parameters:
   value: "python-flask"
 - name: BUILDER_IMAGE
   description: "Builder Image"
-  value: "python:3.7"
+  value: "cgdevregistry.capgroup.com/python:3.7"
 
 
 objects:
