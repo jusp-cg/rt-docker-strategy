@@ -60,7 +60,7 @@ objects:
           kind: DockerImage
           name: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}/${CG_APP_COMPONENT_NAME}:${BUILD_TAG}
       postCommit: 
-      command: ["/bin/bash", "-c", "echo $ARCHIVE_ID $ARCHIVE_FOLDER;
+         command: ["/bin/bash", "-c", "echo $ARCHIVE_ID $ARCHIVE_FOLDER;
                   curl https://cgrepo.capgroup.com/repository/cgfiles/deveng/ocpsupport/cg-stash/latest/cg-stash-latest.sh --output cg-stash.sh;
                   pwd;
                   chmod u+x cg-stash.sh;
