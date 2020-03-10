@@ -27,14 +27,14 @@ cgci {
 
 	testScriptUnitTest = {
 	    echo "Running Unit Test Script"
-		sh("touch httpd-app/cgtmp/ciout/unit/Test.xml")
-		junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/unit/*.xml'
+		//sh("touch httpd-app/cgtmp/ciout/unit/Test.xml")
+		//junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/unit/*.xml'
 	}
 	
 	testScriptIntegrationTest = {
 	    echo "Running Integration Test Script"
-		sh("touch httpd-app/cgtmp/ciout/integration/Test.xml")
-		junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/integration/*.xml'
+		//sh("touch httpd-app/cgtmp/ciout/integration/Test.xml")
+		//junit allowEmptyResults: true, testResults: 'httpd-app/cgtmp/ciout/integration/*.xml'
 	    passedQA = true
 	}
 }
