@@ -9,7 +9,7 @@ cgci {
 		REMOVE_EXISTING_DEPLOYMENTS: true,
 		CD_CANDIDATE: false,
         PROD_CANDIDATE: false,
-		CG_APP_NAME: 'docker-python',
+		CG_APP_NAME: 'docker-strategy',
 		CG_APP_COMPONENT_NAME: 'python-flask',
 		GIT_REPOSITORY: 'https://bitbucket.capgroup.com/scm/cicd/rt-docker-strategy.git',
 		BUILD_TAG: 'none',
