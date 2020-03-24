@@ -64,9 +64,9 @@ objects:
 #--------------------------------------------------------------------------------
 - apiVersion: v1
   data:
-    service.properties: "workers=10\r\ntimeout=30\r\ndisplay.name=${APP_DISPLAY_NAME}\r\nenv=qa"
+    service.properties: "workers=10\r\ntimeout=30\r\ndisplay.name=${APP_DISPLAY_NAME}\r\nenv=qa2"
     db.properties: "database=db100\r\nuser=dbuser100"
-    user.properties: "location=irv\r\nou=qa"
+    user.properties: "location=irv\r\nou=qa2"
     display.name: ${APP_DISPLAY_NAME}
   kind: ConfigMap
   metadata:
