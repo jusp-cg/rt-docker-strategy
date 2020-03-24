@@ -70,14 +70,14 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      app: ${CG_APP_COMPONENT_NAME}
+    name: ${CG_APP_COMPONENT_NAME}
   spec:
     replicas: ${{APP_PODS}}
     revisionHistoryLimit: 10
     selector:
-      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-      deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      app: ${CG_APP_COMPONENT_NAME}
+      deploymentconfig: ${CG_APP_COMPONENT_NAME}
     strategy:
       activeDeadlineSeconds: 21600
       resources: {}
@@ -94,15 +94,15 @@ objects:
           openshift.io/generated-by: CGCustom
         creationTimestamp: null
         labels:
-          app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-          deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+          app: ${CG_APP_COMPONENT_NAME}
+          deploymentconfig: ${CG_APP_COMPONENT_NAME}
       spec:
         containers:
         - env:
           - name: APP_DISPLAY_NAME
             valueFrom:
               configMapKeyRef:
-                name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+                name: ${CG_APP_COMPONENT_NAME}
                 key: display.name
           image: ${DOCKER_REGISTRY}/${BUILD_HOSTING_PROJECT}/${CG_APP_NAME}-${CG_APP_COMPONENT_NAME}${DEPLOY_IMAGE}
           livenessProbe:
@@ -115,7 +115,7 @@ objects:
             periodSeconds: 15
             successThreshold: 1
             timeoutSeconds: 15
-          name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+          name: ${CG_APP_COMPONENT_NAME}
           ports:
           - containerPort: 5000
             protocol: TCP
@@ -158,7 +158,7 @@ objects:
         volumes:
         - configMap:
             defaultMode: 420
-            name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+            name: ${CG_APP_COMPONENT_NAME}
           name: cfgvol1
     test: false
     triggers:
@@ -181,8 +181,8 @@ objects:
       openshift.io/generated-by: CGCustom
     creationTimestamp: null
     labels:
-      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      app: ${CG_APP_COMPONENT_NAME}
+    name: ${CG_APP_COMPONENT_NAME}
   spec:
     ports:
     - name: 5000-tcp
@@ -190,8 +190,8 @@ objects:
       protocol: TCP
       targetPort: 5000
     selector:
-      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-      deploymentconfig: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      app: ${CG_APP_COMPONENT_NAME}
+      deploymentconfig: ${CG_APP_COMPONENT_NAME}
     sessionAffinity: None
     type: ClusterIP
   status:
@@ -207,15 +207,15 @@ objects:
       openshift.io/host.generated: "true"
     creationTimestamp: null
     labels:
-      app: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
-    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      app: ${CG_APP_COMPONENT_NAME}
+    name: ${CG_APP_COMPONENT_NAME}
   spec:
-    host: ${CG_APP_COMPONENT_NAME}-${APP_ENV}-${HOSTING_PROJECT}.apps
+    host: ${CG_APP_COMPONENT_NAME}-${HOSTING_PROJECT}.apps
     port:
       targetPort: 5000-tcp
     to:
       kind: Service
-      name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+      name: ${CG_APP_COMPONENT_NAME}
       weight: 100
     wildcardPolicy: None
   status:
@@ -224,6 +224,6 @@ objects:
       - lastTransitionTime: 2018-07-24T23:58:41Z
         status: "True"
         type: Admitted
-      host: ${CG_APP_COMPONENT_NAME}-${APP_ENV}-${HOSTING_PROJECT}.apps
+      host: ${CG_APP_COMPONENT_NAME}-${HOSTING_PROJECT}.apps
       routerName: router
       wildcardPolicy: None
