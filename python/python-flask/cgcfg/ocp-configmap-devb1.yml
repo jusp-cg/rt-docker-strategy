@@ -71,5 +71,5 @@ objects:
   kind: ConfigMap
   metadata:
     creationTimestamp: null
-    name: ${CG_APP_COMPONENT_NAME}-${APP_ENV}
+    name: ${CG_APP_COMPONENT_NAME}
 
