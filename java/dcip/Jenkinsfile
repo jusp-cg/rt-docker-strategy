@@ -1,5 +1,5 @@
 def GIT_SHARED_LIB_REPOSITORY='https://bitbucket.capgroup.com/scm/cicd/jenkinslib.git'
-def GIT_SHARED_LIB_BRANCH='feature/DE-3654-jenkins-twistlock-integration'
+def GIT_SHARED_LIB_BRANCH='develop'
 
 library identifier: "common@${GIT_SHARED_LIB_BRANCH}", changelog: false, retriever: modernSCM([$class: 'GitSCMSource', credentialsId: 'bitbucket-read', id: 'c6d54abc-8f5c-4bd3-a12d-97aa101563f7', remote: GIT_SHARED_LIB_REPOSITORY, traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
 
