@@ -11,7 +11,7 @@ cgci {
         PROD_CANDIDATE: false,
 		CG_APP_NAME: 'docker-strategy',
 		CG_APP_COMPONENT_NAME: 'python-flask',
-		GIT_REPOSITORY: 'https://bitbucket.capgroup.com/scm/cicd/rt-docker-strategy.git',
+		GIT_REPOSITORY: 'https://github.com/jusp-cg/rt-docker-strategy.git',
 		BUILD_TAG: 'none',
 		DEPLOY_IMAGE: 'none',
 		APP_DIR: 'python/python-flask',			
