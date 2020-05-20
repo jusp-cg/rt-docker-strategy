@@ -1,5 +1,5 @@
 def GIT_SHARED_LIB_REPOSITORY='https://bitbucket.capgroup.com/scm/cicd/jenkinslib.git'
-def GIT_SHARED_LIB_BRANCH='feature/DE-3364-ghe-update-jenkins-shared-libs-to-support-multiple-source-control-providers-ghe'
+def GIT_SHARED_LIB_BRANCH='feature/DE-4001-create-a-new-jenkins-pipeline-for-mrql-that-uses-ghe-and-publish-to-ocp'
 
 library identifier: "common@${GIT_SHARED_LIB_BRANCH}", changelog: false, retriever: modernSCM([$class: 'GitSCMSource', credentialsId: 'bitbucket-read', id: 'c6d54abc-8f5c-4bd3-a12d-97aa101563f7', remote: GIT_SHARED_LIB_REPOSITORY, traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
 
