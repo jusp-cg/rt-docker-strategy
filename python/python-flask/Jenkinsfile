@@ -16,7 +16,7 @@ cgci {
 		DEPLOY_IMAGE: 'none',
 		APP_DIR: 'python/python-flask',			
 		CONFIG_DIR: 'python/python-flask/cgcfg',			
-		BUILD_BRANCH: 'master',
+		BUILD_BRANCH: 'develop',
 		BUILD_HOSTING_CLUSTER: 'dev-int-usw1-aws.csp.capgroup.com',
 		BUILD_HOSTING_PROJECT: 'cgbuild',
 		PIPELINE_TASK_NODE: 'nodejs',
